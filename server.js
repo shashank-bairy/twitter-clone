@@ -3,6 +3,10 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 
+require('./models/User');
+require('./models/Profile');
+require('./models/Post');
+
 const users = require('./routes/api/users');
 const profile = require('./routes/api/profile');
 const posts = require('./routes/api/posts');
@@ -15,16 +19,23 @@ app.use(bodyParser.json());
 
 // Connect to mongodb
 mongoose
-  .connect('mongodb://localhost:27017/social-network', { useNewUrlParser: true })
+  .connect('mongodb://localhost:27017/twitter-clone', { useNewUrlParser: true })
   .then(() => console.log('Connected to Mongodb'))
   .catch(err => console.log(err));
+mongoose.set('useFindAndModify', false);
+
+// Passport middleware
+app.use(passport.initialize());
+
+// Passport config
+require('./config/passport')(passport);
 
 app.use('/api/users', users);
 app.use('/api/profile', profile);
 app.use('/api/posts', posts);
 
-app.get('/', function (req, res) {
-  res.send('hello world');
+app.get('/', function (req, res, next) {
+  res.send('Landing page!');
 });
 
  // Handle 404
