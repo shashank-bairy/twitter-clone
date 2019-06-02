@@ -33,7 +33,7 @@ const postSchema = new Schema({
       type: Number,
       default: 0
     },
-    repost: {
+    retweet: {
       type: Number,
       default: 0
     }
@@ -92,6 +92,24 @@ const postSchema = new Schema({
   date: {
     type: Date,
     default: Date.now
+  },
+  retweet: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: 'users'
+      }
+    }
+  ],
+  isretweet: {
+    value: {
+      type: Boolean,
+      default: false
+    }, 
+    post: {
+      type: Schema.Types.ObjectId,
+      ref: 'posts'
+    }
   }
 });
 

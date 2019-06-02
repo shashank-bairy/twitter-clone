@@ -7,11 +7,19 @@ const passport = require('passport');
 const keys = require('../../config/keys');
 const User = require('../../models/User');
 
+// Validation
+const validateRegisterInput = require('../../validation/register');
+const validateLoginInput = require('../../validation/login');
+
 // @route POST api/users/register
 // @desc Register user
 // @access Public
 router.post('/register', (req, res, next) => {
-  const errors = {};
+  const { errors , isValid } = validateRegisterInput(req.body);
+
+  if(!isValid) {
+    return res.status(400).json(errors);
+  }
 
   User.findOne({email: req.body.email.toLowerCase()})
     .then(user => {
@@ -46,13 +54,18 @@ router.post('/register', (req, res, next) => {
         });
       }
     })
+    .catch(err => console.log(err));
 });
 
 // @route POST api/users/login
 // @desc Login user
 // @access Public
 router.post('/login', (req, res, next) => {
-  const errors = {};
+  const { errors , isValid } = validateLoginInput(req.body);
+
+  if(!isValid) {
+    return res.status(400).json(errors);
+  }
 
   const email = req.body.email;
   const password = req.body.password;
