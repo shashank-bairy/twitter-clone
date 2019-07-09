@@ -1,0 +1,5 @@
+.App__container {
+  display: grid;
+  grid-template-columns: [line1] 275px [line2] auto [line3] 400px [line4];
+  min-height: 100vh;
+}

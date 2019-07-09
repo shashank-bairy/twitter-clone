@@ -1,0 +1,79 @@
+.Menubar {
+  font-size: 1.2rem;
+  font-family: "Lato", sans-serif;
+  border-right: 1px solid #d4edfd;
+}
+
+.menubar-contents {
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+}
+
+ul.nav {
+  list-style: none;
+}
+
+li.nav-item:first-of-type {
+  padding-bottom: 0.4rem;
+}
+
+li + li.nav-item {
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+}
+
+.nav-title {
+  font-weight: 900;
+  padding-left: 1rem;
+}
+
+.nav-icon {
+  font-size: 1.7rem;
+}
+
+.twitter-logo {
+  color: rgba(29, 161, 242, 1);
+}
+
+.active {
+  color: rgba(29, 161, 242, 1) !important;
+}
+
+a.nav-link {
+  text-decoration: none;
+  display: inline-flex;
+  justify-content: left;
+  align-items: center;
+  color: rgb(20, 23, 26);
+  padding: 0.4rem 0.8rem;
+  border-radius: 624.9375rem;
+}
+
+a.nav-link:hover {
+  color: rgba(29, 161, 242, 1);
+  background-color: #e9f6fe;
+  /* background-color: rgb(225, 232, 237); */
+}
+
+.tweet-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+a.tweet-button-link {
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+  background-color: rgba(29, 161, 242, 1);
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 1rem 5.5rem;
+  border-radius: 624.9375rem;
+}
+
+a.tweet-button-link:hover {
+  background-color: rgb(12, 139, 217);
+}

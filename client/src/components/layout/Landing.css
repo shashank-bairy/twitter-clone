@@ -1,0 +1,136 @@
+.Landing {
+  background-image: url("../../img/twitter-bird.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: 40%;
+  height: 100vh;
+  display: flex;
+}
+
+.Landing__block--display,
+.Landing__block--action {
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: 50%;
+}
+
+.Landing__block--display {
+  /* background-color: rgba(248, 247, 216, 0.7); */
+  background-color: rgba(29, 161, 242, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Landing__block--action {
+  background-color: white;
+}
+
+.about-list {
+  list-style: none;
+  font-size: 1rem;
+  color: white;
+  font-weight: 700;
+  letter-spacing: 0.02rem;
+  font-size: 1.2rem;
+}
+
+.about-list li {
+  padding-bottom: 1rem;
+  display: flex;
+  justify-content: left;
+  height: 4rem;
+}
+
+.about-list li:last-of-type {
+  padding-bottom: 0rem;
+}
+
+.about-list li ion-icon {
+  font-size: 2.5rem;
+  padding-right: 1rem;
+}
+
+.Landing__block--action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Landing__block--navigate {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+}
+
+.Landing__navigate--twitter-bird {
+  height: 2rem;
+}
+
+.Landing__navigate--heading {
+  font-size: 1.7rem;
+  padding-bottom: 2rem;
+}
+
+.Landing__navigate--link-heading {
+  font-size: 1.2rem;
+}
+
+.Landing__links {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Landing__link {
+  text-align: center;
+  text-decoration: none;
+  width: 55%;
+  padding: 0.5rem 5rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 2rem;
+  transition: all 0.2s;
+}
+
+.Landing__navigate--signup-link {
+  color: white;
+  background-color: rgba(29, 161, 242, 1);
+}
+
+.Landing__navigate--signup-link:hover {
+  background-color: rgb(12, 139, 217);
+}
+
+.Landing__navigate--login-link {
+  color: rgba(29, 161, 242, 1);
+  background-color: white;
+  border: 1px solid rgba(29, 161, 242, 1);
+}
+
+.Landing__navigate--login-link:hover {
+  background-color: #d4edfd;
+}
+@media screen and (max-width: 800px) {
+  .Landing {
+    flex-direction: column;
+    background-size: initial;
+    height: auto;
+    background-position-y: 24rem !important;
+    background-position-x: 15rem;
+  }
+  .Landing__block--action {
+    order: -1;
+    /* padding: 5rem 0rem; */
+  }
+  .Landing__block--navigate {
+    margin: 5rem 0rem;
+  }
+  .about-list {
+    padding-top: 3rem;
+  }
+}

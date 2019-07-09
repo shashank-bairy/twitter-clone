@@ -1,0 +1,61 @@
+.TrendsMenu {
+  border-left: 1px solid #d4edfd;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+
+input.search-input {
+  margin-top: 0.6rem;
+  display: inline-block;
+  width: 80%;
+  padding: 0.5rem 0rem 0.5rem 2.5rem;
+  border-radius: 624.9375rem;
+  border: 2px solid #e9f6fe;
+  font-size: 1rem;
+  color: rgb(101, 119, 134);
+
+  background: url(search.png);
+  background-position: 0.75rem 0.3em;
+  background-repeat: no-repeat;
+  background-size: 1.5rem 1.5rem;
+  background-color: #e9f6fe;
+}
+
+.search-input:focus {
+  outline: none;
+  background-color: white;
+  border: 2px solid #d4edfd;
+}
+
+.search-box {
+  display: inline-block;
+}
+
+.trends-box {
+  margin-top: 1.5rem;
+  background-color: #e9f6fe;
+  width: 90%;
+  border-radius: 1rem;
+}
+
+.trends-box-item {
+  padding: 0.75rem;
+  border-bottom: 1px solid #d4edfd;
+}
+
+.trends-box-item:last-of-type {
+  border-bottom: none;
+}
+
+.trends-box-heading {
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+}
+
+.trends-box-content {
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  font-size: 0.9rem;
+}

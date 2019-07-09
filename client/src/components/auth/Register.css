@@ -1,0 +1,25 @@
+.Register {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  min-height: 100vh;
+}
+
+.Register__container {
+  padding-top: 2.5rem;
+}
+
+.Register__heading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Register__page-title {
+  font-size: 1.5rem;
+}
+
+.Register__twitter-bird {
+  height: 2rem;
+}
