@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-import "./Register.css";
-
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { registerUser } from "../../actions/authActions";
 import TextFieldGroup from "../common/TextFieldGroup";
-
 import twitter_bird_url from "../../img/twitter-bird.png";
+import "./Register.css";
 
 class Register extends Component {
   constructor(props) {
@@ -19,8 +21,16 @@ class Register extends Component {
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
-  componentDidMount() {}
-  componentWillReceiveProps() {}
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/home");
+    }
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -35,10 +45,11 @@ class Register extends Component {
       password: this.state.password,
       confirmPassword: this.state.confirmPassword
     };
-    console.log(newUser);
+    this.props.registerUser(newUser, this.props.history);
   }
   render() {
     const { errors } = this.state;
+    console.log(errors);
 
     return (
       <div className="Register">
@@ -47,12 +58,16 @@ class Register extends Component {
             <img
               className="Register__twitter-bird"
               src={twitter_bird_url}
-              alt=""
+              alt="Twitter bird"
             />
-            <h1 className="Register__page-title">Sign up for Twitter</h1>
+            <h1 className="Register__page-title">Join Twitter today</h1>
           </div>
           <div className="Register__form-container">
-            <form noValidate onSubmit={this.onSubmit}>
+            <form
+              className="Register__form"
+              noValidate
+              onSubmit={this.onSubmit}
+            >
               <TextFieldGroup
                 placeholder="First Name"
                 name="firstName"
@@ -60,7 +75,39 @@ class Register extends Component {
                 onChange={this.onChange}
                 error={errors.name}
               />
-              <input type="submit" className="btn btn-info btn-block mt-4" />
+              <TextFieldGroup
+                placeholder="Last Name"
+                name="lastName"
+                value={this.state.lastName}
+                onChange={this.onChange}
+                error={null}
+              />
+              <TextFieldGroup
+                placeholder="Email"
+                name="email"
+                value={this.state.email}
+                onChange={this.onChange}
+                error={errors.email}
+              />
+              <TextFieldGroup
+                placeholder="Password"
+                name="password"
+                type="password"
+                value={this.state.password}
+                onChange={this.onChange}
+                error={errors.password}
+              />
+              <TextFieldGroup
+                placeholder="Confirm password"
+                name="confirmPassword"
+                type="password"
+                value={this.state.confirmPassword}
+                onChange={this.onChange}
+                error={errors.confirmPassword}
+              />
+              <button type="submit" className="Register__button">
+                Sign up
+              </button>
             </form>
           </div>
         </div>
@@ -69,4 +116,18 @@ class Register extends Component {
   }
 }
 
-export default Register;
+Register.propTypes = {
+  registerUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+export default connect(
+  mapStateToProps,
+  { registerUser }
+)(withRouter(Register));

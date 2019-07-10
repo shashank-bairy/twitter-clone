@@ -1,0 +1,70 @@
+.Login {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  min-height: 100vh;
+}
+
+.Login__container {
+  padding-top: 2.5rem;
+  width: 33rem;
+}
+
+.Login__form-container {
+  /* width: 50%; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Login__form {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Login__heading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 2rem;
+}
+
+.Login__page-title {
+  font-size: 1.5rem;
+}
+
+.Login__twitter-bird {
+  height: 2rem;
+}
+
+.Login__button {
+  margin-top: 1rem;
+  margin-bottom: 2.5rem;
+  font-size: 1rem;
+  padding: 0.5rem 2rem;
+  border-radius: 2rem;
+  color: white;
+  background-color: rgba(29, 161, 242, 1);
+  text-decoration: none;
+  border: none;
+  transition: all 0.2s;
+}
+
+.Login__button:focus {
+  outline: none;
+}
+
+.Login__button:hover {
+  background-color: rgb(12, 139, 217);
+}
+
+@media screen and (max-width: 576px) {
+  .Login__container {
+    width: 100%;
+  }
+}

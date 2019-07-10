@@ -1,0 +1,23 @@
+.form-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.form-control {
+  width: 90%;
+  border: none;
+  background-color: #e9f6fe;
+  padding: 0.5rem 0.5rem;
+  font-size: 1rem;
+  letter-spacing: 0.01rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-control:focus {
+  outline: none;
+}
+
+.form-control::placeholder {
+}

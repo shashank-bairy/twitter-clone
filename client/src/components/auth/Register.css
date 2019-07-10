@@ -7,6 +7,23 @@
 
 .Register__container {
   padding-top: 2.5rem;
+  width: 33rem;
+}
+
+.Register__form-container {
+  /* width: 50%; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Register__form {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .Register__heading {
@@ -14,6 +31,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-bottom: 2rem;
 }
 
 .Register__page-title {
@@ -22,4 +40,31 @@
 
 .Register__twitter-bird {
   height: 2rem;
+}
+
+.Register__button {
+  margin-top: 1rem;
+  margin-bottom: 2.5rem;
+  font-size: 1rem;
+  padding: 0.5rem 2rem;
+  border-radius: 2rem;
+  color: white;
+  background-color: rgba(29, 161, 242, 1);
+  text-decoration: none;
+  border: none;
+  transition: all 0.2s;
+}
+
+.Register__button:focus {
+  outline: none;
+}
+
+.Register__button:hover {
+  background-color: rgb(12, 139, 217);
+}
+
+@media screen and (max-width: 576px) {
+  .Register__container {
+    width: 100%;
+  }
 }
