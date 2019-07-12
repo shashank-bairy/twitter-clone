@@ -1,0 +1,18 @@
+.section-title-container {
+  position: sticky;
+  top: 0;
+  background-color: white;
+}
+
+.section-title {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding-left: 1rem;
+  border-bottom: 1px solid #d4edfd;
+}
+
+.section-title-heading {
+  font-size: 1.2rem;
+  line-height: 1.3125;
+}

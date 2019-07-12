@@ -49,6 +49,7 @@ a.nav-link {
   color: rgb(20, 23, 26);
   padding: 0.4rem 0.8rem;
   border-radius: 624.9375rem;
+  transition: all 0.2s;
 }
 
 a.nav-link:hover {
@@ -76,4 +77,8 @@ a.tweet-button-link {
 
 a.tweet-button-link:hover {
   background-color: rgb(12, 139, 217);
+}
+
+.nav-link-items {
+  position: relative;
 }

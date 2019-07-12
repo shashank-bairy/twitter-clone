@@ -16,6 +16,8 @@ import ComposeTweet from "./components/tweet/ComposeTweet";
 import Landing from "./components/layout/Landing";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
+import Profile from "./components/profile/Profile";
+import CreateProfile from "./create-profile/CreateProfile";
 
 // check for token
 if (localStorage.jwtToken) {
@@ -50,6 +52,16 @@ class App extends Component {
               <PrivateRoute path="/" component={Menubar} />
               <Switch>
                 <PrivateRoute exact path="/home" component={Home} />
+                <PrivateRoute
+                  exact
+                  path="/profile/:handle"
+                  component={Profile}
+                />
+                <PrivateRoute
+                  exact
+                  path="/create-profile"
+                  component={CreateProfile}
+                />
               </Switch>
               <PrivateRoute path="/" component={TrendsMenu} />
               <PrivateRoute

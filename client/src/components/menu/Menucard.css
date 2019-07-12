@@ -1,0 +1,29 @@
+.Menucard {
+  padding: 0.7rem;
+  min-width: 7rem;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  border: 1px dotted rgba(29, 161, 242, 1);
+  border-radius: 0.3rem;
+  background-color: white;
+  margin-top: -7rem;
+  z-index: 3;
+  position: absolute;
+  left: 7.5rem;
+  bottom: 0rem;
+  background-color: #e9f6fe;
+  font-size: 1rem;
+}
+
+/* border: 1px solid #d4edfd; */
+
+.Menucard__items {
+  display: flex;
+  flex-direction: column;
+}
+
+.Menucard__Link {
+  text-decoration: none;
+  color: black;
+}

@@ -1,12 +1,37 @@
 import React, { Component } from "react";
 import { NavLink, Link } from "react-router-dom";
-import { withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { getCurrentProfile, deleteAccount } from "../../actions/profileActions";
+import Menucard from "./Menucard";
 import "./Menubar.css";
-import MenubarItem from "./MenubarItem";
 
 class Menubar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showMenucard: false
+    };
+    this.showMenucard = this.showMenucard.bind(this);
+    this.closeMenucard = this.closeMenucard.bind(this);
+  }
+  componentDidMount() {
+    this.props.getCurrentProfile();
+  }
+  showMenucard(e) {
+    e.preventDefault();
+    this.setState({ showMenucard: true }, () => {
+      document.addEventListener("click", this.closeMenucard);
+    });
+  }
+  closeMenucard() {
+    this.setState({ showMenucard: false }, () => {
+      document.removeEventListener("click", this.closeMenucard);
+    });
+  }
   render() {
-    const { location } = this.props;
+    const { user } = this.props.auth;
+    const { profile, loading } = this.props.profile;
 
     const navLinks = (
       <ul className="nav">
@@ -70,7 +95,14 @@ class Menubar extends Component {
           </NavLink>
         </li>
         <li className="nav-item">
-          <NavLink className="nav-link" to="/profile">
+          <NavLink
+            className="nav-link"
+            to={
+              profile && Object.keys(profile).length > 0
+                ? `/profile/${profile.handle}`
+                : "/create-profile"
+            }
+          >
             <span className="nav-icon">
               <ion-icon name="person" />
             </span>
@@ -78,12 +110,15 @@ class Menubar extends Component {
           </NavLink>
         </li>
         <li className="nav-item">
-          <NavLink className="nav-link" to="#">
-            <span className="nav-icon">
-              <ion-icon name="more" />
-            </span>
-            <span className="nav-title">More</span>
-          </NavLink>
+          <div className="nav-link-items">
+            <NavLink className="nav-link" onClick={this.showMenucard}>
+              <span className="nav-icon">
+                <ion-icon name="more" />
+              </span>
+              <span className="nav-title">More</span>
+            </NavLink>
+            {this.state.showMenucard ? <Menucard /> : null}
+          </div>
         </li>
       </ul>
     );
@@ -111,4 +146,18 @@ class Menubar extends Component {
   }
 }
 
-export default withRouter(Menubar);
+Menubar.propTypes = {
+  getCurrentProfile: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  profile: state.profile,
+  auth: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  { getCurrentProfile, deleteAccount }
+)(Menubar);
