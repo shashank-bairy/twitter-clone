@@ -30,8 +30,7 @@ class Menubar extends Component {
     });
   }
   render() {
-    const { user } = this.props.auth;
-    const { profile, loading } = this.props.profile;
+    const { profile } = this.props.profile;
 
     const navLinks = (
       <ul className="nav">
@@ -131,7 +130,6 @@ class Menubar extends Component {
           <div className="tweet-button">
             <Link
               className="tweet-button-link"
-              prevPath={window.location.pathname}
               to={{
                 pathname: "/compose/tweet",
                 prevPath: window.location.pathname

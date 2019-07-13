@@ -5,8 +5,13 @@ import jwt_decode from "jwt-decode";
 
 // Register User
 export const registerUser = (userData, history) => dispatch => {
+  const config = {
+    headers: {
+      "content-type": "multipart/form-data"
+    }
+  };
   axios
-    .post("/api/users/register", userData)
+    .post("/api/users/register", userData, config)
     .then(res => history.push("/login"))
     .catch(err =>
       dispatch({

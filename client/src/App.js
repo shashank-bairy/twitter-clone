@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import { Provider } from "react-redux";
 import setAuthToken from "./utils/setAuthToken";
@@ -17,7 +17,7 @@ import Landing from "./components/layout/Landing";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Profile from "./components/profile/Profile";
-import CreateProfile from "./create-profile/CreateProfile";
+import CreateProfile from "./components/create-profile/CreateProfile";
 
 // check for token
 if (localStorage.jwtToken) {

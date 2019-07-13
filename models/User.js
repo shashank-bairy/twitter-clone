@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const usersSchema = new Schema({
@@ -21,7 +21,8 @@ const usersSchema = new Schema({
     required: true
   },
   avatar: {
-    type: String
+    type: String,
+    required: true
   },
   date: {
     type: Date,
@@ -29,8 +30,8 @@ const usersSchema = new Schema({
   }
 });
 
-usersSchema.virtual('fullName').get(() => {
-  return this.name.first + ' ' + this.name.last; 
+usersSchema.virtual("fullName").get(() => {
+  return this.name.first + " " + this.name.last;
 });
 
-module.exports = User = mongoose.model('users', usersSchema);
+module.exports = User = mongoose.model("users", usersSchema);

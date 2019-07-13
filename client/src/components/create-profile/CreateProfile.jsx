@@ -3,9 +3,9 @@ import "./CreateProfile.css";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
-import { createProfile } from "../actions/profileActions";
+import { createProfile } from "../../actions/profileActions";
 
-import TextFieldGroup from "../components/common/TextFieldGroup";
+import TextFieldGroup from "../common/TextFieldGroup";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -43,7 +43,7 @@ class CreateProfile extends Component {
       website: this.state.website,
       dob: this.state.dob
     };
-    console.log(profileData.dob);
+
     this.props.createProfile(profileData, this.props.history);
   }
   onChange(e) {

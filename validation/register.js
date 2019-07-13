@@ -3,19 +3,18 @@ const isEmpty = require("./is-empty");
 
 const validateRegisterInput = data => {
   let errors = {};
-  data.name.first = !isEmpty(data.name.first) ? data.name.first : "";
+  data.firstName = !isEmpty(data.firstName) ? data.firstName : "";
   data.email = !isEmpty(data.email) ? data.email : "";
   data.password = !isEmpty(data.password) ? data.password : "";
   data.confirmPassword = !isEmpty(data.confirmPassword)
     ? data.confirmPassword
     : "";
-  data.avatar = !isEmpty(data.avatar) ? data.avatar : "";
 
   // name
-  if (!Validator.isLength(data.name.first, { min: 2, max: 40 })) {
+  if (!Validator.isLength(data.firstName, { min: 2, max: 40 })) {
     errors.name = "First name must be between 2 and 40 characters";
   }
-  if (Validator.isEmpty(data.name.first)) {
+  if (Validator.isEmpty(data.firstName)) {
     errors.name = "First name field is required";
   }
   // email
@@ -38,10 +37,6 @@ const validateRegisterInput = data => {
   }
   if (Validator.isEmpty(data.confirmPassword)) {
     errors.confirmPassword = "Confirm password field is required";
-  }
-  // avatar
-  if (data.avatar !== "" && !Validator.isURL(data.avatar)) {
-    errors.avatar = "Invalid avatar URL";
   }
 
   return {

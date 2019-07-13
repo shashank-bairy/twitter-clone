@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Spinner from "../common/Spinner";
 import { getProfileByHandle } from "../../actions/profileActions";
-
 class Profile extends Component {
   componentDidMount() {
     if (this.props.match.params.handle) {
@@ -17,15 +16,20 @@ class Profile extends Component {
   }
 
   render() {
+    const { user } = this.props.auth;
     const { profile, loading } = this.props.profile;
     let profileContent;
-    console.log(loading);
-    console.log(profile);
     if (profile === null || loading) {
       profileContent = <Spinner />;
     } else {
       profileContent = (
         <div className="profileContent">
+          <img
+            src={`${window.location.protocol}//${window.location.host}/${
+              user.avatar
+            }`}
+            alt="User avatar"
+          />
           <p>{profile.handle}</p>
           <p>{profile.bio}</p>
           <p>{profile.location.city}</p>
@@ -49,10 +53,12 @@ class Profile extends Component {
 }
 
 Profile.propTypes = {
+  auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
+  auth: state.auth,
   profile: state.profile
 });
 

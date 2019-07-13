@@ -3,6 +3,8 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const passport = require("passport");
+const multer = require("multer");
+const sharp = require("sharp");
 
 const keys = require("../../config/keys");
 const User = require("../../models/User");
@@ -11,15 +13,43 @@ const User = require("../../models/User");
 const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
 
+const fileStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "files");
+  },
+  filename: (req, file, cb) => {
+    cb(null, new Date().toISOString() + "-" + file.originalname);
+  }
+});
+
+const fileFilter = (req, file, cb) => {
+  if (
+    file.mimetype === "image/png" ||
+    file.mimetype === "image/jpg" ||
+    file.mimetype === "image/jpeg"
+  ) {
+    cb(null, true); // if you want to accept that file
+  } else {
+    cb(null, false); // if wanna reject storing that file
+  }
+};
+
+const upload = multer({ storage: fileStorage, fileFilter: fileFilter });
+
 // @route POST api/users/register
 // @desc Register user
 // @access Public
-router.post("/register", (req, res, next) => {
-  const { errors, isValid } = validateRegisterInput(req.body);
+router.post("/register", upload.single("avatar"), (req, res, next) => {
+  let { errors, isValid } = validateRegisterInput(req.body);
+
+  if (!req.file) {
+    errors.avatar = "Please upload your avatar image.";
+    if (isValid) isValid = !isValid;
+  }
+
   if (!isValid) {
     return res.status(400).json(errors);
   }
-
   User.findOne({ email: req.body.email.toLowerCase() })
     .then(user => {
       if (user) {
@@ -28,13 +58,19 @@ router.post("/register", (req, res, next) => {
       } else {
         const newUser = new User({
           name: {
-            first: req.body.name.first,
-            last: req.body.name.last
+            first: req.body.firstName,
+            last: req.body.lastName
           },
           email: req.body.email,
-          avatar: req.body.avatar ? req.body.avatar : "",
+          avatar: req.file.filename, // if path required? use req.file.path
           password: req.body.password
         });
+
+        // sharp(req.file.path)
+        //   .resize(300, 300)
+        //   .toBuffer()
+        //   .then(data => console.log(data))
+        //   .catch(err => console.log(err));
 
         bcrypt.genSalt(10, (err, salt) => {
           if (err) throw err;
@@ -85,7 +121,8 @@ router.post("/login", (req, res, next) => {
           // User matched
           const payLoad = {
             _id: user._id,
-            name: user.name
+            name: user.name,
+            avatar: user.avatar
           };
 
           // Sign token

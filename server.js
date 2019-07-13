@@ -2,7 +2,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
-const multer = require("multer");
 
 require("./models/User");
 require("./models/Profile");
@@ -27,6 +26,8 @@ mongoose.set("useFindAndModify", false);
 
 // Passport middleware
 app.use(passport.initialize());
+
+app.use(express.static("files"));
 
 // Passport config
 require("./config/passport")(passport);

@@ -14,12 +14,14 @@ class Register extends Component {
       firstName: "",
       lastName: "",
       email: "",
+      avatar: null,
       password: "",
       confirmPassword: "",
       errors: {}
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.onAvatarChange = this.onAvatarChange.bind(this);
   }
   componentDidMount() {
     if (this.props.auth.isAuthenticated) {
@@ -36,20 +38,33 @@ class Register extends Component {
   }
   onSubmit(e) {
     e.preventDefault();
-    const newUser = {
-      name: {
-        first: this.state.firstName,
-        last: this.state.lastName
-      },
-      email: this.state.email,
-      password: this.state.password,
-      confirmPassword: this.state.confirmPassword
-    };
-    this.props.registerUser(newUser, this.props.history);
+    // const newUser = {
+    //   name: {
+    //     first: this.state.firstName,
+    //     last: this.state.lastName
+    //   },
+    //   avatar: this.state.avatar,
+    //   email: this.state.email,
+    //   password: this.state.password,
+    //   confirmPassword: this.state.confirmPassword
+    // };
+
+    let formData = new FormData();
+    formData.append("firstName", this.state.firstName);
+    formData.append("lastName", this.state.lastName);
+    formData.append("avatar", this.state.avatar);
+    formData.append("email", this.state.email);
+    formData.append("password", this.state.password);
+    formData.append("confirmPassword", this.state.confirmPassword);
+    // this.props.registerUser(newUser, this.props.history);
+    this.props.registerUser(formData, this.props.history);
+  }
+  onAvatarChange(e) {
+    // e.preventDefault();
+    this.setState({ avatar: e.target.files[0] });
   }
   render() {
     const { errors } = this.state;
-    console.log(errors);
 
     return (
       <div className="Register">
@@ -105,6 +120,7 @@ class Register extends Component {
                 onChange={this.onChange}
                 error={errors.confirmPassword}
               />
+              <input type="file" name="avatar" onChange={this.onAvatarChange} />
               <button type="submit" className="Register__button">
                 Sign up
               </button>
