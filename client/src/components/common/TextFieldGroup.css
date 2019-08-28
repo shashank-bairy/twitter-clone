@@ -6,7 +6,7 @@
 }
 
 .form-control {
-  width: 90%;
+  width: 100%;
   border: none;
   background-color: #e9f6fe;
   padding: 0.5rem 0.5rem;
@@ -17,7 +17,4 @@
 
 .form-control:focus {
   outline: none;
-}
-
-.form-control::placeholder {
 }

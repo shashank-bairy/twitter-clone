@@ -17,11 +17,12 @@ const validateProfileInput = data => {
   }
   // City
   if (Validator.isEmpty(data.location.city)) {
-    errors.location.city = "City field is required";
+    errors.city = "City field is required";
   }
+
   // Country
   if (Validator.isEmpty(data.location.country)) {
-    errors.location.country = "Country field is required";
+    errors.country = "Country field is required";
   }
   // website
   if (data.website !== "" && !Validator.isURL(data.website)) {
@@ -29,7 +30,7 @@ const validateProfileInput = data => {
   }
   // date of birth
   if (!Validator.toDate(data.dob)) {
-    errors.dob = "Invalid date format. Required format is yyyy-mm-dd";
+    errors.dob = "Invalid date format. Required format is mm-dd-yyyy";
   }
   if (Validator.isEmpty(data.dob)) {
     errors.dob = "Date of Birth field is required";

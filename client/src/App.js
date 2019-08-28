@@ -62,6 +62,11 @@ class App extends Component {
                   path="/create-profile"
                   component={CreateProfile}
                 />
+                <PrivateRoute
+                  exact
+                  path="/edit-profile"
+                  component={CreateProfile}
+                />
               </Switch>
               <PrivateRoute path="/" component={TrendsMenu} />
               <PrivateRoute

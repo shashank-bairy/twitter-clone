@@ -1,0 +1,99 @@
+.profileContent {
+  font-size: 0.7rem;
+}
+
+.profile-image-container {
+  background: linear-gradient(to bottom, rgb(29, 161, 242) 80%, white 50%);
+}
+
+.profile-image {
+  margin-top: 5rem;
+  margin-left: 1rem;
+  height: 10rem;
+  width: 10rem;
+  border: 0.25rem solid white;
+  border-radius: 50%;
+}
+
+.profile-user-container {
+  padding-left: 1rem;
+}
+
+.user-name-text {
+  margin-block-end: 0;
+}
+
+.user-website,
+.user-joined,
+.user-location,
+.user-dob {
+  margin-block-start: 0.2em;
+  margin-block-end: 0.2em;
+  font-size: 0.875rem;
+  color: rgb(101, 119, 134);
+  letter-spacing: 0.0125rem;
+}
+
+.user-website,
+.user-joined {
+  margin-left: 1rem;
+}
+
+.user-username {
+  font-size: 1rem;
+  color: rgb(101, 119, 134);
+  letter-spacing: 0.015rem;
+  margin-block-end: 0.67rem;
+}
+
+.user-bio {
+  font-size: 0.9rem;
+}
+
+.user-more-details-flex {
+  display: flex;
+  align-items: center;
+}
+
+.location-icon,
+.link-icon,
+.cake-icon,
+.calender-icon {
+  font-size: 1.1rem;
+  margin-right: 0.35rem;
+}
+
+.user-details-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.edit-profile-button {
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+  background-color: rgba(29, 161, 242, 1);
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 624.9375rem;
+}
+
+.edit-profile-button:hover {
+  cursor: pointer;
+  background-color: rgb(12, 139, 217);
+}
+
+.edit-profile-button:focus {
+  outline: none;
+}
+
+.user-details {
+  width: 75%;
+}
+
+.user-edit-profile {
+  width: 25%;
+}

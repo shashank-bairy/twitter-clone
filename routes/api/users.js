@@ -122,7 +122,8 @@ router.post("/login", (req, res, next) => {
           const payLoad = {
             _id: user._id,
             name: user.name,
-            avatar: user.avatar
+            avatar: user.avatar,
+            joined_on: user.date
           };
 
           // Sign token

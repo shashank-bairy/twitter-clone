@@ -16,3 +16,65 @@
   font-size: 1.2rem;
   line-height: 1.3125;
 }
+
+.section-form-container {
+  /* margin: 2.5rem 1.5rem 0 1.5rem; */
+}
+
+.create-profile-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2.5rem 2.5rem;
+}
+
+.create-profile-button {
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+  background-color: rgba(29, 161, 242, 1);
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 624.9375rem;
+}
+
+.create-profile-button:hover {
+  background-color: rgb(12, 139, 217);
+  cursor: pointer;
+}
+
+.create-profile-button:focus {
+  outline: none;
+}
+
+.date-picker-container {
+  align-self: flex-start;
+  width: 100%;
+}
+
+.create-profile-datepicker {
+  width: 100%;
+  background-color: #e9f6fe;
+  padding: 0.5rem;
+  font: 1.2rem;
+  border: none;
+}
+
+.create-profile-datepicker:focus {
+  outline: none;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.create-profle-form-item {
+  display: flex;
+  font-size: 1rem;
+  flex-direction: column;
+  width: 100%;
+}

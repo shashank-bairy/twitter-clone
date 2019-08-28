@@ -58,7 +58,7 @@ a.nav-link:hover {
   /* background-color: rgb(225, 232, 237); */
 }
 
-.tweet-button {
+.tweet-button-container {
   display: flex;
   justify-content: center;
   align-items: center;

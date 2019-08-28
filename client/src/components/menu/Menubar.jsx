@@ -37,11 +37,7 @@ class Menubar extends Component {
         <li className="nav-item">
           <NavLink className="nav-link" to="/">
             <span className="nav-icon twitter-logo">
-              <ion-icon
-                className="nav-icon"
-                id="nav-icon"
-                name="logo-twitter"
-              />
+              <i className="fab fa-twitter" />
             </span>
           </NavLink>
         </li>
@@ -110,7 +106,7 @@ class Menubar extends Component {
         </li>
         <li className="nav-item">
           <div className="nav-link-items">
-            <NavLink className="nav-link" onClick={this.showMenucard}>
+            <NavLink className="nav-link" to="" onClick={this.showMenucard}>
               <span className="nav-icon">
                 <ion-icon name="more" />
               </span>
@@ -127,7 +123,7 @@ class Menubar extends Component {
         <div className="menubar-contents">
           <div className="twitter-logo" />
           {navLinks}
-          <div className="tweet-button">
+          <div className="tweet-button-container">
             <Link
               className="tweet-button-link"
               to={{
