@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { PropTypes } from "prop-types";
 import { connect } from "react-redux";
-import user_image from "./jian-yang.jpg";
 import "./Home.css";
 
-import Post from "./Post";
+import PostList from "./PostList";
 
 class Home extends Component {
   render() {
+    const { user } = this.props.auth;
     return (
       <div className="Home">
         <section className="section-title-container">
@@ -18,7 +18,11 @@ class Home extends Component {
         <section className="section-tweet">
           <ul className="section-tweet-list">
             <li className="tweet-items">
-              <img className="tweet-image" src={user_image} alt="User" />
+              <img
+                className="tweet-image"
+                src={`${window.location.protocol}//${window.location.host}/${user.avatar}`}
+                alt="User"
+              />
             </li>
             <li className="tweet-items tweet-items-text-box">
               <div className="tweet-text-box">
@@ -31,7 +35,7 @@ class Home extends Component {
           </ul>
         </section>
         <section className="section-posts">
-          <Post />
+          <PostList />
         </section>
       </div>
     );

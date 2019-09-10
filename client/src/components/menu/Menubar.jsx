@@ -3,6 +3,7 @@ import { NavLink, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getCurrentProfile, deleteAccount } from "../../actions/profileActions";
+
 import Menucard from "./Menucard";
 import "./Menubar.css";
 
@@ -142,6 +143,7 @@ class Menubar extends Component {
 
 Menubar.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
+  deleteAccount: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired
 };
