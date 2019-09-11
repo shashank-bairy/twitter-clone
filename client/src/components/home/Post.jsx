@@ -4,13 +4,19 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import "./Post.css";
 
-import { deletePost, likePost, unlikePost } from "../../actions/postActions";
+import { likePost, unlikePost } from "../../actions/postActions";
 
 class Post extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showPostMenu: false
+      showPostMenu: false,
+      count: {
+        likes: 0,
+        comments: 0,
+        retweet: 0
+      },
+      liked: false
     };
     this.onLikePost = this.onLikePost.bind(this);
     this.onUnlikePost = this.onUnlikePost.bind(this);
@@ -22,6 +28,9 @@ class Post extends Component {
 
   componentDidMount() {
     this._isMounted = true;
+    if (this.findUserLike(this.props.post.likes))
+      this.setState({ count: this.props.post.count, liked: true });
+    else this.setState({ count: this.props.post.count });
   }
   componentWillUnmount() {
     this._isMounted = false;
@@ -45,11 +54,6 @@ class Post extends Component {
     }
   }
 
-  onDeleteClick(id) {
-    this._isMounted = false;
-    this.props.deletePost(id, this.props.history);
-  }
-
   findUserLike(likes) {
     const { auth } = this.props;
     if (likes.filter(like => like.user === auth.user._id).length > 0)
@@ -57,16 +61,28 @@ class Post extends Component {
     else return false;
   }
 
-  onLikePost(id) {
-    this.props.likePost(id);
+  async onDeletePost(id) {
+    this._isMounted = false;
+    await this.props.deletePostById(id);
   }
 
-  onUnlikePost(id) {
-    this.props.unlikePost(id);
+  async onLikePost(id) {
+    await this.props.likePost(id);
+    let count = this.state.count;
+    count.likes = count.likes + 1;
+    this.setState({ count: count, liked: true });
+  }
+
+  async onUnlikePost(id) {
+    await this.props.unlikePost(id);
+    let count = this.state.count;
+    count.likes = count.likes - 1;
+    this.setState({ count: count, liked: false });
   }
 
   render() {
     const { post } = this.props;
+    const { count, liked } = this.state;
 
     const postMenu = (
       <div className="post-menu">
@@ -77,7 +93,7 @@ class Post extends Component {
           <Link
             to=""
             className="post-menu__link"
-            onClick={this.onDeleteClick.bind(this, post._id)}
+            onClick={this.onDeletePost.bind(this, post._id)}
           >
             Delete&nbsp;post
           </Link>
@@ -111,16 +127,16 @@ class Post extends Component {
               <div className="post-icon-box">
                 <i className="far fa-comment-alt comment-icon post-actions-icon" />
                 <span className="post-action-count post-comment-count">
-                  {post.count.comments}
+                  {count.comments}
                 </span>
               </div>
               <div className="post-icon-box">
                 <i className="fas fa-retweet retweet-icon post-actions-icon" />
                 <span className="post-action-count post-retweet-count">
-                  {post.count.retweet}
+                  {count.retweet}
                 </span>
               </div>
-              {!this.findUserLike(post.likes) ? (
+              {!liked ? (
                 <div className="post-icon-box">
                   <i
                     onClick={() => this.onLikePost(post._id)}
@@ -140,7 +156,7 @@ class Post extends Component {
                     style={{ color: "rgb(224, 36, 94)" }}
                     className="post-action-count post-liked-count"
                   >
-                    {post.count.likes}
+                    {count.likes}
                   </span>
                 </div>
               )}
@@ -155,7 +171,6 @@ class Post extends Component {
 Post.propTypes = {
   likePost: PropTypes.func.isRequired,
   unlikePost: PropTypes.func.isRequired,
-  deletePost: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 };
 
@@ -166,5 +181,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { deletePost, likePost, unlikePost }
+  { likePost, unlikePost }
 )(Post);

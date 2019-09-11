@@ -160,7 +160,6 @@ router.post(
                 errors.internalError = "The server met an unexpected condition";
                 res.status(500).json(errors);
               });
-            console.log(post);
           });
         }
       })

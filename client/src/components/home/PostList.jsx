@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Post from "./Post";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { getPosts } from "../../actions/postActions";
+import { getPosts, deletePost } from "../../actions/postActions";
 import PropTypes from "prop-types";
 
 import isEmpty from "../../validation/is-empty";
@@ -14,25 +14,33 @@ class PostList extends Component {
     this.state = {
       posts: null
     };
+    this.deletePostById = this.deletePostById.bind(this);
+  }
+
+  deletePostById(id) {
+    this.props.deletePost(id, this.props.history);
   }
 
   componentDidMount() {
     this.props.getPosts();
   }
+
   componentWillReceiveProps(nextProps) {
     if (!isEmpty(nextProps.post.posts)) {
       const posts = nextProps.post.posts;
       this.setState({ posts: posts });
     }
   }
+
   render() {
-    const { loading } = this.props.post;
+    const { loading, posts } = this.props.post;
+
     let postsContent;
-    if (this.state.posts === null || loading) {
+    if (posts === null || loading) {
       postsContent = <Spinner />;
     } else {
-      postsContent = this.state.posts.map(post => (
-        <Post key={post._id} post={post} />
+      postsContent = posts.map(post => (
+        <Post key={post._id} post={post} deletePostById={this.deletePostById} />
       ));
     }
     return <div className="PostList">{postsContent}</div>;
@@ -40,7 +48,8 @@ class PostList extends Component {
 }
 
 PostList.propTypes = {
-  post: PropTypes.object.isRequired
+  post: PropTypes.object.isRequired,
+  deletePost: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -49,5 +58,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getPosts }
+  { getPosts, deletePost }
 )(withRouter(PostList));

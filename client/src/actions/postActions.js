@@ -35,7 +35,7 @@ export const createPost = (postData, history) => dispatch => {
     );
 };
 
-export const deletePost = (id, history) => dispatch => {
+export const deletePost = id => dispatch => {
   axios
     .delete(`/api/posts/${id}`)
     .then(res => {
@@ -43,7 +43,6 @@ export const deletePost = (id, history) => dispatch => {
         type: DELETE_POST,
         payload: id
       });
-      // history.push("/home");
     })
     .catch(err =>
       dispatch({
@@ -56,7 +55,7 @@ export const deletePost = (id, history) => dispatch => {
 export const likePost = id => dispatch => {
   axios
     .post(`/api/posts/like/${id}`)
-    .then(res => dispatch(getPosts()))
+    .then(res => res)
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
@@ -68,7 +67,7 @@ export const likePost = id => dispatch => {
 export const unlikePost = id => dispatch => {
   axios
     .post(`/api/posts/unlike/${id}`)
-    .then(res => dispatch(getPosts()))
+    .then(res => res)
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
